@@ -696,6 +696,7 @@ const DX = {
 };
 
 let currentLang = 'km'; // default: Khmer, farmer-first
+let lastResult  = null; // holds the last /predict response, for re-render on language switch
 
 function applyLang() {
   const dict = UI[currentLang];
@@ -746,8 +747,6 @@ function handleFile(file) {
 }
 
 // ═══════════════════════════ Analyse — talks to Flask /predict ═══════════════════════════
-let lastResult = null;
-
 analyseBtn.addEventListener('click', async () => {
   const file = fileInput.files[0] || null;
   if (!file) return;
